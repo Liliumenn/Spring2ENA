@@ -1,32 +1,32 @@
 package ru.samsung.gamestudio;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 
-public class MyGdxGame extends ApplicationAdapter {
+public class MyGdxGame extends Game {
 	SpriteBatch batch;
+	OrthographicCamera camera;
+
+	public static final int SCR_WIDTH = 1280;
+	public static final int SCR_HEIGHT = 720;
+
+	ScreenGame screenGame;
 
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
+		camera = new OrthographicCamera();
+		camera.setToOrtho(false, SCR_WIDTH, SCR_HEIGHT);
 
-		Texture birdTexture;
-		birdTexture = new Texture("bird0.png");
-	}
-
-	@Override
-	public void render () {
-		ScreenUtils.clear(1, 0, 0, 1);
-		batch.begin();
-		batch.draw(birdTexture,0, 0);
-		batch.end();
+		ScreenGame screenGame = new ScreenGame(this);
+		setScreen(screenGame);
 	}
 
 	@Override
 	public void dispose () {
 		batch.dispose();
 	}
+
 }
 
