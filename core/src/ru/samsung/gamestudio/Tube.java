@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 import java.util.Random;
 
+import static ru.samsung.gamestudio.MyGdxGame.SCR_HEIGHT;
+
 public class Tube {
 
     Texture textureUpperTube;
@@ -13,6 +15,7 @@ public class Tube {
     int gapY;
     int gapHeight = 400;
     Random random;
+    int padding;
 
     public Tube(){
         textureUpperTube = new Texture("tubes/tube_flipper.png");
