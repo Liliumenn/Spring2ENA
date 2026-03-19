@@ -7,15 +7,10 @@ import com.badlogic.gdx.utils.ScreenUtils;
 public class ScreenGame implements Screen {
 
     MyGdxGame myGdxGame;
-
-    Texture birdTexture;
-
-    int birdX = 0, birdY = 0;
-    int birdSpeed = 5;
-
+    Bird bird;
     ScreenGame(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
-        birdTexture = new Texture("bird0.png");
+        this.bird = new Bird(0,0,5,200,200);
     }
 
     @Override
@@ -25,14 +20,13 @@ public class ScreenGame implements Screen {
 
     @Override
     public void render(float delta) {
-        birdX += birdSpeed;
-        birdY += birdSpeed;
+
 
         ScreenUtils.clear(1, 0, 0, 1);
         myGdxGame.camera.update();
         myGdxGame.batch.setProjectionMatrix(myGdxGame.camera.combined);
         myGdxGame.batch.begin();
-        myGdxGame.batch.draw(birdTexture, birdX, birdY);
+        this.bird.draw(myGdxGame.batch);
         myGdxGame.batch.end();
     }
 
