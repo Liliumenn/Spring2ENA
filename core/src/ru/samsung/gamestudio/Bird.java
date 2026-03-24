@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
 
+import static ru.samsung.gamestudio.MyGdxGame.SCR_HEIGHT;
+
 public class Bird {
     int x, y;
     int speed;
@@ -58,6 +60,11 @@ public class Bird {
     public void dispose(){
     }
 
+    public boolean isInField() {
+        if (y + height < 0) return false;
+        if (y > SCR_HEIGHT) return false;
+        return true;
+    }
 
 
 }
