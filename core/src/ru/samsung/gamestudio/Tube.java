@@ -55,6 +55,10 @@ public class Tube {
         return false;
     }
     public boolean needAddPoint(Bird bird) {
-        return false;
+        return !isPointReceived && bird.x >= x + width;
     }
+    public void setPointReceived() {
+        isPointReceived = true;
+    }
+
 }
