@@ -1,6 +1,6 @@
-package ru.samsung.gamestudio;
+package ru.samsung.gamestudio.megaga;
 
-public class Megascreen implements MyScreen{
+public class Megascreen implements MyScreen {
 
     @Override
     public void create() {

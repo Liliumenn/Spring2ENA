@@ -1,4 +1,4 @@
-package ru.samsung.gamestudio;
+package ru.samsung.gamestudio.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
@@ -19,7 +19,7 @@ public class Bird {
     int width;
     int height;
 
-    void onClick(){
+    public void onClick(){
         jump = true;
         jumpHeight = maxHeightOfJump + y;
     }

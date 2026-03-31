@@ -1,4 +1,4 @@
-package ru.samsung.gamestudio;
+package ru.samsung.gamestudio.megaga;
 
 public interface MyScreen {
     public void create();         // интерфейс - класс, где методы не имеют блоки кода.

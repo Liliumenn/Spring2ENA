@@ -1,15 +1,24 @@
 package ru.samsung.gamestudio;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.ScreenUtils;
+import ru.samsung.gamestudio.characters.Bird;
+import ru.samsung.gamestudio.characters.Tube;
+import ru.samsung.gamestudio.components.MovingBackground;
+import ru.samsung.gamestudio.components.PointCounter;
+import ru.samsung.gamestudio.screens.ScreenGame;
 
 public class MyGdxGame extends Game {
-	SpriteBatch batch;
-	OrthographicCamera camera;
+	public SpriteBatch batch;
+	public OrthographicCamera camera;
 
 	public static final int SCR_WIDTH = 1280;
 	public static final int SCR_HEIGHT = 720;
+	public Screen screenRestart;
 
 	ScreenGame screenGame;
 
@@ -19,7 +28,7 @@ public class MyGdxGame extends Game {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, SCR_WIDTH, SCR_HEIGHT);
 
-		ScreenGame screenGame = new ScreenGame(this);
+		screenGame = new ScreenGame(this);
 		setScreen(screenGame);
 	}
 

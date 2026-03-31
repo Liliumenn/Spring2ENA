@@ -1,7 +1,8 @@
-package ru.samsung.gamestudio;
+package ru.samsung.gamestudio.characters;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
+import ru.samsung.gamestudio.characters.Bird;
 
 import java.util.Random;
 
@@ -33,15 +34,15 @@ public class Tube {
         distanceBetweenTubes = (SCR_WIDTH + width) / (tubeCount - 1);
         x = distanceBetweenTubes * tubeIdx + SCR_WIDTH;
     }
-    void draw(Batch batch) {
+    public void draw(Batch batch) {
         batch.draw(textureUpperTube, x, gapY + gapHeight/ 2, width,height);
         batch.draw(textureDownTube, x, gapY - gapHeight/ 2 - height, width,height);
     }
-    void dispose(){
+    public void dispose(){
         textureUpperTube.dispose();
         textureDownTube.dispose();
     }
-    void  move(){
+    public void  move(){
         x -= speed;
         if(x < -width){
             isPointReceived = false;
@@ -51,6 +52,8 @@ public class Tube {
     }
     public boolean isHit(Bird bird) {
         if (bird.y + bird.height >= gapY + gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x)
+            return true;
+        if (bird.y >= gapY + gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x) // столкновение с нижней трубой поменять
             return true;
         return false;
     }

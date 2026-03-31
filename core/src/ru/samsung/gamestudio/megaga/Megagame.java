@@ -1,4 +1,4 @@
-package ru.samsung.gamestudio;
+package ru.samsung.gamestudio.megaga;
 
 public class Megagame {
     MyScreen screen;
