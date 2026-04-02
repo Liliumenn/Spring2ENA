@@ -11,6 +11,8 @@ import ru.samsung.gamestudio.characters.Tube;
 import ru.samsung.gamestudio.components.MovingBackground;
 import ru.samsung.gamestudio.components.PointCounter;
 import ru.samsung.gamestudio.screens.ScreenGame;
+import ru.samsung.gamestudio.screens.ScreenMenu;
+import ru.samsung.gamestudio.screens.ScreenRestart;
 
 public class MyGdxGame extends Game {
 	public SpriteBatch batch;
@@ -18,9 +20,9 @@ public class MyGdxGame extends Game {
 
 	public static final int SCR_WIDTH = 1280;
 	public static final int SCR_HEIGHT = 720;
-	public Screen screenRestart;
-
-	ScreenGame screenGame;
+	public ScreenRestart screenRestart;
+	public ScreenGame screenGame;
+	public ScreenMenu screenMenu;
 
 	@Override
 	public void create () {
@@ -28,8 +30,10 @@ public class MyGdxGame extends Game {
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, SCR_WIDTH, SCR_HEIGHT);
 
+		screenMenu = new ScreenMenu(this);
 		screenGame = new ScreenGame(this);
-		setScreen(screenGame);
+		screenRestart = new ScreenRestart(this);
+		setScreen(screenMenu);
 	}
 
 	@Override

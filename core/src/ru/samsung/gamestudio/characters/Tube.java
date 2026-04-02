@@ -22,7 +22,6 @@ public class Tube {
     int padding = 100;
     int distanceBetweenTubes;
     int x;
-    int tubeCount = 3;
     boolean isPointReceived;
 
     public Tube(int tubeCount, int tubeIdx){
@@ -51,9 +50,9 @@ public class Tube {
         }
     }
     public boolean isHit(Bird bird) {
-        if (bird.y + bird.height >= gapY + gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x)
+        if (bird.y <= gapY - gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width)
             return true;
-        if (bird.y >= gapY + gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x) // столкновение с нижней трубой поменять
+        if (bird.y + bird.height >= gapY + gapHeight / 2 && bird.x + bird.width >= x && bird.x <= x + width)
             return true;
         return false;
     }

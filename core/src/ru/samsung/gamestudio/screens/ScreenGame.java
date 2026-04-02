@@ -16,15 +16,14 @@ import static ru.samsung.gamestudio.MyGdxGame.SCR_WIDTH;
 public class ScreenGame implements Screen {
     final int  pointCounterMarginTop = 60;
     final int  pointCounterMarginRight = 400;
-    MyGdxGame myGdxGame;
-    Bird bird;
+    int gamePoints;
     int tubeCount;
     Tube[] tubes;
     boolean isGameOver;
-    int gamePoints;
+    MyGdxGame myGdxGame;
     PointCounter pointCounter;
     MovingBackground background;
-
+    Bird bird;
 
     public ScreenGame(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
@@ -40,11 +39,14 @@ public class ScreenGame implements Screen {
     public void show() {
         isGameOver = false;
         gamePoints = 0;
+        bird.setY(SCR_HEIGHT / 2);
+        initTubes();
     }
 
     @Override
     public void render(float delta) {
         if (isGameOver) {
+            myGdxGame.screenRestart.gamePoints = gamePoints;
             myGdxGame.setScreen(myGdxGame.screenRestart);
             return;
         }
@@ -68,7 +70,6 @@ public class ScreenGame implements Screen {
             System.out.println("not in field");
             isGameOver = true;
         }
-        for(Tube tube : tubes) tube.move();
 
         ScreenUtils.clear(1, 0, 0, 1);
         myGdxGame.camera.update();
@@ -118,5 +119,4 @@ public class ScreenGame implements Screen {
             tubes[i] = new Tube(tubeCount, i);
         }
     }
-
 }

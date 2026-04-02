@@ -36,6 +36,12 @@ public class TextButton {
         textX = x + (buttonWidth - textWidth) / 2;
         textY = y + (buttonHeight + textHeight) / 2;
     }
+    public boolean isHit(int tx, int ty) {
+        System.out.println(tx + " - " + ty);
+        System.out.println(x + " - " + y);
+        return tx >= x && tx <= x + buttonWidth
+                && ty >= y && ty <= y + buttonHeight;
+    }
     public void draw(Batch batch) {
         batch.draw(texture, x, y, buttonWidth, buttonHeight);
         font.draw(batch, text, textX, textY);
