@@ -17,10 +17,12 @@ public class ScreenRestart implements Screen {
     MovingBackground background;
     PointCounter pointCounter;
     TextButton buttonRestart;
+    TextButton buttonMenu;
     int gamePoints;
     public ScreenRestart(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         buttonRestart = new TextButton(100, 400, "Restart");
+        buttonMenu = new TextButton(100, 200, "Menu");
         background = new MovingBackground("backgrounds/restart_bg.png");
         pointCounter = new PointCounter(800, 500);
     }
@@ -40,6 +42,9 @@ public class ScreenRestart implements Screen {
             if (buttonRestart.isHit((int) touch.x, (int) touch.y)) {
                 myGdxGame.setScreen(myGdxGame.screenGame);
             }
+            if (buttonMenu.isHit((int) touch.x, (int) touch.y)) {
+                myGdxGame.setScreen(myGdxGame.screenMenu);
+            }
         }
 
         ScreenUtils.clear(1, 0, 0, 1);
@@ -48,6 +53,7 @@ public class ScreenRestart implements Screen {
         myGdxGame.batch.begin();
         background.draw(myGdxGame.batch);
         buttonRestart.draw(myGdxGame.batch);
+        buttonMenu.draw(myGdxGame.batch);
         pointCounter.draw(myGdxGame.batch, gamePoints);
 
         myGdxGame.batch.end();

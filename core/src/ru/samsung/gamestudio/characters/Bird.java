@@ -3,6 +3,7 @@ package ru.samsung.gamestudio.characters;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.sun.org.apache.bcel.internal.generic.ANEWARRAY;
+import ru.samsung.gamestudio.screens.ScreenColor;
 
 import static ru.samsung.gamestudio.MyGdxGame.SCR_HEIGHT;
 
@@ -15,7 +16,8 @@ public class Bird {
     final int maxHeightOfJump = 200;
     boolean jump;
     int frameCounter = 0;
-    Texture[] framesArray;
+    public Texture[] framesArray;
+
     int width;
     int height;
 
@@ -32,12 +34,23 @@ public class Bird {
         this.width = width;
         this.height = height;
 
-        framesArray = new Texture[]{
-                new Texture("birdTiles/bird0.png"),
-                new Texture("birdTiles/bird1.png"),
-                new Texture("birdTiles/bird2.png"),
-                new Texture("birdTiles/bird1.png"),
-        };
+        if (ScreenColor.isBlack) {
+            framesArray = new Texture[]{
+                    new Texture("birdTilesBlack/bird0.png"),
+                    new Texture("birdTilesBlack/bird1.png"),
+                    new Texture("birdTilesBlack/bird2.png"),
+                    new Texture("birdTilesBlack/bird1.png"),
+            };
+        } else {
+            framesArray = new Texture[]{
+            new Texture("birdTiles/bird0.png"),
+            new Texture("birdTiles/bird1.png"),
+            new Texture("birdTiles/bird2.png"),
+            new Texture("birdTiles/bird1.png"),
+            };
+        }
+
+
     }
 
     public void fly(){

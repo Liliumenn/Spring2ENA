@@ -2,26 +2,36 @@ package ru.samsung.gamestudio.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.ScreenUtils;
+import com.badlogic.gdx.utils.Timer;
 import ru.samsung.gamestudio.MyGdxGame;
+import ru.samsung.gamestudio.characters.Bird;
+import ru.samsung.gamestudio.components.ChangeColor;
 import ru.samsung.gamestudio.components.MovingBackground;
-import ru.samsung.gamestudio.components.PointCounter;
 import ru.samsung.gamestudio.components.TextButton;
 
-public class ScreenMenu implements Screen{
-    MyGdxGame myGdxGame;
-    MovingBackground background;
+public class ScreenColor implements Screen {
     TextButton buttonStart;
-    TextButton buttonExit;
-    TextButton buttonColor;
+    TextButton buttonMenu;
 
-    public ScreenMenu(MyGdxGame myGdxGame) {
+    MyGdxGame myGdxGame;
+
+    MovingBackground background;
+
+    TextButton buttonBlack;
+    ChangeColor changeColor;
+    public static boolean isBlack;
+    boolean showText = false;
+
+    public ScreenColor(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
-        buttonStart = new TextButton(100, 400, "Start");
-        buttonExit = new TextButton(100, 200, "Exit");
-        buttonColor = new TextButton(700, 200, "Color");
-        background = new MovingBackground("backgrounds/restart_bg.png");
+        buttonBlack = new TextButton(50, 500, "Vorona");
+        background = new MovingBackground("backgrounds/color_bg.png");
+        buttonStart = new TextButton(100, 100, "Start");
+        buttonMenu = new TextButton(700, 100, "Menu");
+        changeColor = new ChangeColor(800, 700);
     }
 
     @Override
@@ -31,22 +41,22 @@ public class ScreenMenu implements Screen{
 
     @Override
     public void render(float delta) {
+        Vector3 touch = null;
         if (Gdx.input.justTouched()) {
 
-            Vector3 touch = myGdxGame.camera.unproject(
+            touch = myGdxGame.camera.unproject(
                     new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0)
             );
-
+            if (buttonBlack.isHit((int) touch.x, (int) touch.y)) {
+                isBlack = true;
+                showText = true;
+            }
             if (buttonStart.isHit((int) touch.x, (int) touch.y)) {
                 myGdxGame.setScreen(myGdxGame.screenGame);
             }
-            if (buttonColor.isHit((int) touch.x, (int) touch.y)) {
-                myGdxGame.setScreen(myGdxGame.screenColor);
+            if (buttonMenu.isHit((int) touch.x, (int) touch.y)) {
+                myGdxGame.setScreen(myGdxGame.screenMenu);
             }
-            if (buttonExit.isHit((int) touch.x, (int) touch.y)) {
-                Gdx.app.exit();
-            }
-
         }
 
         ScreenUtils.clear(1, 0, 0, 1);
@@ -55,11 +65,13 @@ public class ScreenMenu implements Screen{
         myGdxGame.batch.begin();
         background.draw(myGdxGame.batch);
         buttonStart.draw(myGdxGame.batch);
-        buttonExit.draw(myGdxGame.batch);
-        buttonColor.draw(myGdxGame.batch);
+        buttonMenu.draw(myGdxGame.batch);
+        buttonBlack.draw(myGdxGame.batch);
+        if (showText){ changeColor.draw(myGdxGame.batch);}
+
+
 
         myGdxGame.batch.end();
-
     }
 
     @Override
@@ -84,7 +96,6 @@ public class ScreenMenu implements Screen{
 
     @Override
     public void dispose() {
-        background.dispose();
+
     }
 }
-

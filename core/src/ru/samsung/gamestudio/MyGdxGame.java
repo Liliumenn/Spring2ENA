@@ -10,6 +10,7 @@ import ru.samsung.gamestudio.characters.Bird;
 import ru.samsung.gamestudio.characters.Tube;
 import ru.samsung.gamestudio.components.MovingBackground;
 import ru.samsung.gamestudio.components.PointCounter;
+import ru.samsung.gamestudio.screens.ScreenColor;
 import ru.samsung.gamestudio.screens.ScreenGame;
 import ru.samsung.gamestudio.screens.ScreenMenu;
 import ru.samsung.gamestudio.screens.ScreenRestart;
@@ -23,6 +24,7 @@ public class MyGdxGame extends Game {
 	public ScreenRestart screenRestart;
 	public ScreenGame screenGame;
 	public ScreenMenu screenMenu;
+	public ScreenColor screenColor;
 
 	@Override
 	public void create () {
@@ -31,6 +33,7 @@ public class MyGdxGame extends Game {
 		camera.setToOrtho(false, SCR_WIDTH, SCR_HEIGHT);
 
 		screenMenu = new ScreenMenu(this);
+		screenColor = new ScreenColor(this);
 		screenGame = new ScreenGame(this);
 		screenRestart = new ScreenRestart(this);
 		setScreen(screenMenu);
