@@ -3,6 +3,7 @@ package ru.samsung.gamestudio.characters;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import ru.samsung.gamestudio.characters.Bird;
+import ru.samsung.gamestudio.components.PointCounter;
 
 import java.util.Random;
 
@@ -23,6 +24,7 @@ public class Tube {
     int distanceBetweenTubes;
     int x;
     boolean isPointReceived;
+    int gamePoints;
 
     public Tube(int tubeCount, int tubeIdx){
         random = new Random();

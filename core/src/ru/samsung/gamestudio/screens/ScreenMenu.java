@@ -14,11 +14,13 @@ public class ScreenMenu implements Screen{
     MovingBackground background;
     TextButton buttonStart;
     TextButton buttonExit;
+    TextButton buttonColor;
 
     public ScreenMenu(MyGdxGame myGdxGame) {
         this.myGdxGame = myGdxGame;
         buttonStart = new TextButton(100, 400, "Start");
         buttonExit = new TextButton(100, 200, "Exit");
+        buttonColor = new TextButton(700, 200, "Color");
         background = new MovingBackground("backgrounds/restart_bg.png");
     }
 
@@ -34,8 +36,15 @@ public class ScreenMenu implements Screen{
             Vector3 touch = myGdxGame.camera.unproject(
                     new Vector3(Gdx.input.getX(), Gdx.input.getY(), 0)
             );
+
             if (buttonStart.isHit((int) touch.x, (int) touch.y)) {
                 myGdxGame.setScreen(myGdxGame.screenGame);
+            }
+            if (buttonColor.isHit((int) touch.x, (int) touch.y)) {
+                myGdxGame.setScreen(myGdxGame.screenColor);
+            }
+            if (buttonExit.isHit((int) touch.x, (int) touch.y)) {
+                Gdx.app.exit();
             }
 
         }
@@ -47,6 +56,7 @@ public class ScreenMenu implements Screen{
         background.draw(myGdxGame.batch);
         buttonStart.draw(myGdxGame.batch);
         buttonExit.draw(myGdxGame.batch);
+        buttonColor.draw(myGdxGame.batch);
 
         myGdxGame.batch.end();
 

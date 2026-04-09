@@ -30,13 +30,13 @@ public class ScreenGame implements Screen {
         tubeCount = 3;
         initTubes();
         background = new MovingBackground("backgrounds/game_bg.png");
-        this.bird = new Bird(0,0,5,200,200);
         pointCounter = new PointCounter(SCR_WIDTH - pointCounterMarginRight, SCR_HEIGHT - pointCounterMarginTop);
 
     }
 
     @Override
     public void show() {
+        this.bird = new Bird(0,0,5,200,200);
         isGameOver = false;
         gamePoints = 0;
         bird.setY(SCR_HEIGHT / 2);
